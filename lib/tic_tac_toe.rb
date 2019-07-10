@@ -45,11 +45,11 @@ class TicTacToe
   def full?
     @board.none? {|gameitem| gameitem == " "} #=> true
   end
-  
+
   def draw?
     !won? && full?
   end
-  
+
   def over?
     if draw? || won?
       return true
@@ -57,7 +57,7 @@ class TicTacToe
       return false
     end
   end
-  
+
   def winner
     itemList = won?
     if itemList
@@ -66,7 +66,7 @@ class TicTacToe
       return nil
   end
   end
-  
+
   def turn_count
     round = 0
     @board.each do |boarditem|
@@ -76,11 +76,11 @@ class TicTacToe
     end
     return round
   end
-  
+
   def current_player
     turn_count % 2 == 0 ? "X" : "O"
   end
-  
+
   def display_board
     puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
     puts "-----------"
@@ -88,23 +88,23 @@ class TicTacToe
     puts "-----------"
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
-  
+
   def input_to_index(user_input)
     user_input.to_i - 1
   end
-  
+
   def move(index, current_player)
     @board[index] = current_player
   end
-  
+
   def position_taken?(location)
     @board[location] != " " && @board[location] != ""
   end
-  
+
   def valid_move?(index)
     index.between?(0,8) && !position_taken?(index)
   end
-  
+
   def turn
     puts "Please enter 1-9:"
     input = gets.strip
